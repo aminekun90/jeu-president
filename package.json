@@ -1,9 +1,10 @@
 {
-  "name": "electron-app",
-  "version": "0.0.0",
+  "name": "jeu-president-app",
+  "version": "0.0.1",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng build --base-href ./ && electron .",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -27,6 +28,7 @@
     "@angular/cli": "~14.0.1",
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
+    "electron": "^19.0.4",
     "jasmine-core": "~4.1.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
