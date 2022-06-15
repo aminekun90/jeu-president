@@ -3,6 +3,10 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@jeu-president-library/*": ["jeu-president-library/src/library/core/*"],
+      "@jeu-president/*": ["jeu-president-library/src/library/core/*"]
+    },
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
