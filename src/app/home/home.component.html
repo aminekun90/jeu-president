@@ -1,4 +1,5 @@
-<select name="playerNumber" id="playerNumber" [(ngModel)]="playersNumber">
+<label for="playersNumber">Players number:</label>
+<select name="playersNumber" id="playersNumber" [(ngModel)]="playersNumber.value">
   <option disabled>How many player?</option>
   <option *ngFor="let playerNumber of selectModel" [value]="playerNumber.value">{{playerNumber.title}}</option>
 

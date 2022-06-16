@@ -8,7 +8,7 @@ import { Party } from '@jeu-president-library/Party';
 })
 export class HomeComponent implements OnInit {
   party: Party | undefined;
-  playersNumber: number = 4;
+  playersNumber: any = { title: "4 players", value: 4 };
   selectModel = [
     { title: "1 player", value: 1, },
     { title: "2 players", value: 2, },
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     console.debug('Home - onInit');
   }
   startNewParty(): void {
-    this.party = new Party(this.playersNumber);
+    this.party = new Party(this.playersNumber.value);
     this.party.getDeck().shuffleCards();
 
     this.party.startParty();
