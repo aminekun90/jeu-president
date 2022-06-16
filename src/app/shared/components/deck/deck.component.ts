@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Deck } from '@jeu-president-library/Deck';
-import { Party } from '@jeu-president-library/Party';
 
 @Component({
   selector: 'app-deck',

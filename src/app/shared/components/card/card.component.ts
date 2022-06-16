@@ -7,10 +7,24 @@ import { Card } from '@jeu-president-library/Card';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() card: Card = new Card("", 1, "", 2);
-  constructor() {
+  public _card: Card | undefined;
+  @Input() set card(card: Card | undefined) {
+    this._card = card;
   }
 
   ngOnInit(): void {
+  }
+  createRange(number: number) {
+    return new Array(number);
+
+  }
+  convertStringToNumber(input: string | undefined) {
+
+    if (!input) return NaN;
+
+    if (input.trim().length == 0) {
+      return NaN;
+    }
+    return Number(input);
   }
 }

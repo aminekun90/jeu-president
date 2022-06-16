@@ -1,15 +1,28 @@
-<div class="card-wrapper">
+<div class="card-wrapper {{_card?.getCategory()}}">
   <div class="card-content">
     <div class="card-top-value">
-      <div class="card-number">{{card.getName()}}</div>
-      <div class="card-symbol">{{card.getCategory()}}</div>
+      <div class="card-number">{{_card?.getName()}}</div>
+      <div class="card-symbol">{{_card?.getCategory()}}</div>
     </div>
-    <div class="card-center-symbole-large">
-      {{card.getCategory()}}
+    <div *ngIf="_card?.getName()=='A'" class="card-symbole large center">
+      {{_card?.getCategory()}}
+    </div>
+    <div *ngIf="_card?.getName()=='J'" class="card-symbole large center">
+      {{_card?.getCategory()}}
+    </div>
+    <div *ngIf="_card?.getName()=='Q'" class="card-symbole large center">
+      {{_card?.getCategory()}}
+    </div>
+    <div *ngIf="convertStringToNumber(_card?.getName()) && convertStringToNumber(_card?.getName()) >1"
+      class="card-symbole center">
+      <ng-container *ngFor="let i of createRange(convertStringToNumber(_card?.getName()))">
+        {{_card?.getCategory()}}
+      </ng-container>
+
     </div>
     <div class="card-bottom-value">
-      <div class="card-number">{{card.getName()}}</div>
-      <div class="card-symbol">{{card.getCategory()}}</div>
+      <div class="card-number">{{_card?.getName()}}</div>
+      <div class="card-symbol">{{_card?.getCategory()}}</div>
     </div>
   </div>
 </div>
