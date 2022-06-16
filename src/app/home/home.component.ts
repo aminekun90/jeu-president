@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from '@jeu-president-library/Card';
 import { Party } from '@jeu-president-library/Party';
 
 @Component({
