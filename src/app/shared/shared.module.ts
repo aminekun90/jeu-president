@@ -6,19 +6,21 @@ import { SharedComponent } from './components/shared/shared.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { CardComponent } from './components/card/card.component';
 import { DeckComponent } from './components/deck/deck.component';
+import { PartyComponent } from './components/party/party.component';
 
 @NgModule({
   declarations: [
     SharedComponent,
     NavigationComponent,
     CardComponent,
-    DeckComponent
+    DeckComponent,
+    PartyComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     SharedRoutingModule,
   ],
-  exports: [CardComponent, DeckComponent, NavigationComponent]
+  exports: [CardComponent, DeckComponent, PartyComponent, NavigationComponent]
 })
 export class SharedModule { }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Deck } from '@jeu-president-library/Deck';
 import { Party } from '@jeu-president-library/Party';
 
 @Component({
@@ -7,13 +8,13 @@ import { Party } from '@jeu-president-library/Party';
   styleUrls: ['./deck.component.scss']
 })
 export class DeckComponent implements OnInit {
-  public _party: Party | undefined;
-  @Input() set party(party: Party | undefined) {
-    this._party = party;
+  public _deck: Deck | undefined;
+  @Input() set deck(deck: Deck | undefined) {
+    this._deck = deck;
   }
 
   ngOnInit(): void {
-    console.log('Party started', this.party);
+    console.log('Deck value: ', this._deck);
   }
 
 }
