@@ -9,9 +9,11 @@
     </div>
     <div *ngIf="_card?.getName()=='J'" class="card-symbole large center">
       {{_card?.getCategory()}}
+      <!-- Add Jota card design -->
     </div>
     <div *ngIf="_card?.getName()=='Q'" class="card-symbole large center">
       {{_card?.getCategory()}}
+      <!-- Add Queen card design-->
     </div>
     <div *ngIf="convertStringToNumber(_card?.getName()) && convertStringToNumber(_card?.getName()) >1"
       class="card-symbole center">

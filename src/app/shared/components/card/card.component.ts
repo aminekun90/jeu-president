@@ -14,12 +14,12 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  createRange(number: number) {
+
+  createRange(number: number): Array<number> {
     return new Array(number);
-
   }
-  convertStringToNumber(input: string | undefined) {
 
+  convertStringToNumber(input: string | undefined): number {
     if (!input) return NaN;
 
     if (input.trim().length == 0) {

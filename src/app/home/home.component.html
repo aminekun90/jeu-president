@@ -1,2 +1,8 @@
-<app-party [party]="party"></app-party>
+<select name="playerNumber" id="playerNumber" [(ngModel)]="playersNumber">
+  <option disabled>How many player?</option>
+  <option *ngFor="let playerNumber of selectModel" [value]="playerNumber.value">{{playerNumber.title}}</option>
+
+</select>
 <button (click)="startNewParty()">Nouvelle partie</button>
+
+<app-party [party]="party"></app-party>

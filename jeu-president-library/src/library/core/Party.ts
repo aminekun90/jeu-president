@@ -43,7 +43,6 @@ export class Party {
 
   startParty() {
     this.givePlayersCards();
-    console.log('New Players', this._players)
   }
 
   /**
@@ -51,8 +50,8 @@ export class Party {
    * @param indexOfPlayer index of the player
    * @returns
    */
-  getPlayerSetOfCards(indexOfPlayer: number) {
-    return this._deck.getCards().filter((_, indexOfCard) => this._players[indexOfPlayer].getSetsOfCards().includes(indexOfCard));
+  getPlayerSetOfCards(indexOfPlayer: number): Card[] {
+    return this._deck.getCardsFromListOfIndexes(this._players[indexOfPlayer].getSetsOfCards());
   }
 
   getCurrentPlayerSetOfCards() {
