@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from '@jeu-president-library/Card';
+import { Party } from '@jeu-president-library/Party';
 
 @Component({
   selector: 'app-home',
@@ -7,10 +8,13 @@ import { Card } from '@jeu-president-library/Card';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  card = new Card('A', 1, '♣', 13);
-  constructor() { }
+  party: Party | undefined;
 
   ngOnInit(): void {
+    console.debug('Home - onInit');
   }
-
+  startNewParty(): void {
+    if (!this.party) { this.party = new Party(); }
+    console.log(this.party);
+  }
 }
