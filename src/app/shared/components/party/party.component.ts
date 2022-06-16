@@ -13,7 +13,7 @@ export class PartyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Party started', this.party);
+    console.log('Party started', this._party);
   }
 
 }

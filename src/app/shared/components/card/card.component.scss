@@ -1,9 +1,16 @@
 .card-wrapper {
   width: 250px;
   height: 400px;
+  background: white;
   border-radius: 8px;
-  border: 1px solid gray;
+  border: 2px solid gray;
+  margin: 1px;
   padding: 10px;
+  cursor: pointer;
+  &:hover {
+    border-width: 2px;
+    border-color: black;
+  }
 
   .card-content {
     display: flex;
@@ -15,7 +22,6 @@
   }
   .card-bottom-value {
     transform: rotate(180deg);
-
     bottom: 0;
   }
   .card-center-symbole-large {

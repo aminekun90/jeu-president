@@ -1,0 +1,15 @@
+.deck {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  app-card {
+    z-index: 1;
+    top: 100px;
+    position: absolute;
+    @for $i from 0 through 52 {
+      &.card-#{$i} {
+        left: 10px * $i;
+      }
+    }
+  }
+}

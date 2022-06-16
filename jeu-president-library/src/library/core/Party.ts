@@ -43,6 +43,7 @@ export class Party {
 
   startParty() {
     this.givePlayersCards();
+    console.log('New Players', this._players)
   }
 
   /**

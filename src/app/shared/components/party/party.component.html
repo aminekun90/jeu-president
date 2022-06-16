@@ -1,1 +1,6 @@
 <app-deck [deck]="_party?.getDeck()"></app-deck>
+<div *ngFor="let player of _party?.getPlayers()">
+  <app-player [player]="player"></app-player>
+  <app-card *ngFor="let card of _party?.getDeck()?.getCardsFromListOfIndexes(player.getSetsOfCards())" [card]="card">
+  </app-card>
+</div>

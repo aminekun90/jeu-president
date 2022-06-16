@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   }
   startNewParty(): void {
     if (!this.party) { this.party = new Party(); }
+    this.party.startParty();
     console.log(this.party);
   }
 }
