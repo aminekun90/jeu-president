@@ -7,7 +7,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { CardComponent } from './components/card/card.component';
 import { DeckComponent } from './components/deck/deck.component';
 import { PartyComponent } from './components/party/party.component';
-import { PlayerComponent } from './components/player/player.component';
 
 @NgModule({
   declarations: [
@@ -15,14 +14,13 @@ import { PlayerComponent } from './components/player/player.component';
     NavigationComponent,
     CardComponent,
     DeckComponent,
-    PartyComponent,
-    PlayerComponent
+    PartyComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     SharedRoutingModule,
   ],
-  exports: [CardComponent, DeckComponent, PartyComponent, PlayerComponent, NavigationComponent]
+  exports: [CardComponent, DeckComponent, PartyComponent, NavigationComponent]
 })
 export class SharedModule { }
