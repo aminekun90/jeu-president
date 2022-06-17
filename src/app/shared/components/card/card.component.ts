@@ -10,6 +10,7 @@ import { symbolsTable } from '@jeu-president-library/Consts';
 export class CardComponent implements OnInit {
   public _card: Card | undefined;
   public _hidden: boolean = false;
+  cardClass = 'card card--';
   @Input() set card(card: Card | undefined) {
     this._card = card;
   }
@@ -17,11 +18,13 @@ export class CardComponent implements OnInit {
     this._hidden = hidden;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.cardClass += this._card?.getCategory();
+  }
 
   getSymbolsTable(): { col_up: any; col_center: number; col_down: any; } {
     let name = this._card?.getName() ? this._card?.getName() : '0';
-    let value = this.convertStringToNumber(['A', 'J', 'K'].includes(name) ? '0' : name);
+    let value = this.convertStringToNumber(['A', 'J', 'K', 'Q'].includes(name) ? '0' : name);
     return symbolsTable[value ? value - 1 : 0];
   }
 
@@ -47,6 +50,20 @@ export class CardComponent implements OnInit {
   createRange(number: number): Array<number> {
     return new Array(number);
   }
+  isKQJA() {
+    let name = this._card?.getName() ? this._card?.getName() : '0';
+    return ['A', 'J', 'Q', 'K'].includes(name);
+  }
+  getCardFullName() {
+    switch (this._card?.getName()) {
+      case 'A': return `a${this._card.getCategory()}.svg`;
+      case 'K': return 'king.svg';
+      case 'Q': return 'queen.svg';
+      case 'J': return 'jota.svg';
+      case 'Joker': return 'joker.svg';
+      default: return '';
+    }
+  }
   isRotated(item: number): boolean {
     let name = this._card?.getName() ? this._card?.getName() : '0';
     return item === 3 && ['10', '9'].includes(name)
@@ -61,6 +78,6 @@ export class CardComponent implements OnInit {
   }
   isInnerCentered() {
     let name = this._card?.getName() ? this._card?.getName() : '0';
-    return ['2', '3', 'A', 'Q', 'K'].includes(name)
+    return ['2', '3', 'A', 'J', 'Q', 'K'].includes(name);
   }
 }

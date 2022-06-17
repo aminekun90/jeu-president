@@ -1,6 +1,6 @@
-<section class="card card--{{_card?.getCategory()}}" [attr.value]="_card?.getName()">
+<section *ngIf="!_hidden" class="card card--{{_card?.getCategory()}}" [attr.value]="_card?.getName()">
 
-  <div [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}">
+  <div *ngIf="!isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}">
 
     <div *ngIf="getColumnUp().value" class="card__column">
       <div *ngFor="let item of createRange(getColumnUp().value)"
@@ -18,4 +18,8 @@
     </div>
 
   </div>
+  <div *ngIf="isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}">
+    <img src="/assets/{{getCardFullName()}}" alt="">
+  </div>
 </section>
+<section *ngIf="_hidden" class="card hidden"></section>
