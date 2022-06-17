@@ -1,32 +1,36 @@
 export class Player {
-    private _name: string;
-    private _needToPlay: boolean = true;
-    private _cardSets: Array<number> = [];
-    constructor(name: string) {
-        this._name = name;
-    }
+  private _name: string;
+  private _needToPlay: boolean = true;
+  private _cardSets: Array<number> = [];
+  constructor(name: string) {
+    this._name = name;
+  }
 
-    setSetsOfCards(cardSets: Array<number>) {
-        this._cardSets = cardSets;
-    }
+  setSetsOfCards(cardSets: Array<number>) {
+    this._cardSets = cardSets;
+  }
 
-    getSetsOfCards(): Array<number> {
-        return this._cardSets;
-    }
+  getSetsOfCards(): Array<number> {
+    return this._cardSets;
+  }
 
-    needToPlay() {
-        return this._needToPlay;
-    }
+  getName(): string {
+    return this._name;
+  }
 
-    done() {
-        this._needToPlay = false;
-    }
+  needToPlay() {
+    return this._needToPlay;
+  }
 
-    resetDone() {
-        this._needToPlay = true;
-    }
+  done() {
+    this._needToPlay = false;
+  }
 
-    removeCardsFromSet(indexesOfCards: number[]) {
-        this._cardSets = this._cardSets.filter((_, index) => !indexesOfCards.includes(index));
-    }
+  resetDone() {
+    this._needToPlay = true;
+  }
+
+  removeCardsFromSet(indexesOfCards: number[]) {
+    this._cardSets = this._cardSets.filter((_, index) => !indexesOfCards.includes(index));
+  }
 }

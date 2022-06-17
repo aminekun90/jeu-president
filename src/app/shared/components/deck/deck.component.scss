@@ -2,9 +2,11 @@
   align-items: center;
   display: flex;
   flex-direction: row;
+  position: relative;
+  height: 430px;
   app-card {
     z-index: 1;
-    top: 100px;
+    top: 0px;
     position: absolute;
     @for $i from 0 through 52 {
       &.card-#{$i} {

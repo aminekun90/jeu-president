@@ -1,0 +1,21 @@
+.card-sets {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  app-card {
+    z-index: 1;
+    top: 0px;
+    position: absolute;
+    @for $i from 0 through 52 {
+      &.card-#{$i} {
+        left: 10px * $i;
+      }
+    }
+  }
+}
+
+.players {
+  min-height: 445px;
+  position: relative;
+}
