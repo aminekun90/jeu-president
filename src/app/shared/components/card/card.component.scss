@@ -5,6 +5,8 @@ $font-size: 16px;
 
 $card-background: #fff;
 $card-padding: 4px;
+$card-border-radius: 8px;
+
 $card-width: 172px;
 $card-height: 240px;
 $card-color-red: #e44145;
@@ -15,12 +17,6 @@ $diamond: "♦";
 $heart: "♥";
 $spade: "♠";
 
-.cards {
-  text-align: center;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
 .card {
   position: relative;
   display: inline-block;
@@ -28,8 +24,8 @@ $spade: "♠";
   height: $card-height;
   font: $font-size "Trebuchet MS";
   cursor: pointer;
-  margin: $gutter;
-  border-radius: $card-padding;
+  // margin: $gutter;
+  border-radius: $card-border-radius;
   background: $card-background;
   border: 1px solid rgba(0, 0, 0, 0.18);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
@@ -39,6 +35,16 @@ $spade: "♠";
     background-position: center;
     background-size: cover;
     background-image: url("/assets/background.svg");
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  transition: all 250ms linear 100ms;
+  top: 0;
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    top: -$card-padding * 10;
   }
   &:before,
   &:after {
