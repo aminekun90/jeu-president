@@ -1,50 +1,164 @@
-.card-wrapper {
-  width: 250px;
-  height: 400px;
-  background: white;
-  border-radius: 8px;
-  border: 2px solid gray;
-  margin: 1px;
-  padding: 10px;
-  font-size: 25px;
-  &.♥,
-  &.♦ {
-    color: red;
-  }
+$color: #c0c0c0;
+$background: #f0f0f0;
+$gutter: 10px;
+$font-size: 16px;
 
+$card-background: #fff;
+$card-padding: 4px;
+$card-width: 172px;
+$card-height: 240px;
+$card-color-red: #e44145;
+$card-color-black: #252525;
+$card-symbol-size: 40px;
+$club: "♣";
+$diamond: "♦";
+$heart: "♥";
+$spade: "♠";
+
+.cards {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.card {
+  position: relative;
+  display: inline-block;
+  width: $card-width;
+  height: $card-height;
+  font: $font-size "Trebuchet MS";
   cursor: pointer;
-  &:hover {
-    border-width: 2px;
-    border-color: black;
+  margin: $gutter;
+  border-radius: $card-padding;
+  background: $card-background;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+
+  &:before,
+  &:after {
+    content: attr(value);
+    position: absolute;
+    width: 12px;
+    text-align: center;
+    letter-spacing: -2px;
   }
 
-  .card-content {
-    display: flex;
-    height: 100%;
-    width: 100%;
+  &:before {
+    top: $card-padding;
+    left: $card-padding;
   }
-  .card-top-value {
-    float: right;
-    text-align: center;
-  }
-  .card-bottom-value {
+
+  &:after {
+    bottom: $card-padding;
+    right: $card-padding;
     transform: rotate(180deg);
-    text-align: center;
-    bottom: 0;
   }
-  .card-symbole {
-    width: 100%;
-    display: flex;
-    font-size: 60px;
 
-    &.large {
-      font-size: 200px;
-    }
-    &.center {
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
-      text-align: center;
+  &--heart {
+    color: $card-color-red;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $heart;
     }
   }
+  &--diamond {
+    color: $card-color-red;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $diamond;
+    }
+  }
+
+  &--spade {
+    color: $card-color-black;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $spade;
+    }
+  }
+
+  &--club {
+    color: $card-color-black;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $club;
+    }
+  }
+}
+
+.card__inner {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 6 * $card-padding;
+  left: 6 * $card-padding;
+  right: 6 * $card-padding;
+  bottom: 6 * $card-padding;
+
+  &--centered {
+    justify-content: center;
+  }
+}
+
+.card__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--centered {
+    justify-content: center;
+  }
+}
+
+.card__symbol {
+  display: inline-block;
+  height: $card-symbol-size;
+  text-align: center;
+
+  &:before {
+    font-size: $card-symbol-size;
+    line-height: $card-symbol-size;
+  }
+
+  .card--heart &:before {
+    content: $heart;
+  }
+
+  .card--spade &:before {
+    content: $spade;
+  }
+  .card--diamond &:before {
+    content: $diamond;
+  }
+  .card--club &:before {
+    content: $club;
+  }
+
+  &--rotated,
+  &:last-of-type {
+    transform: rotate(180deg);
+  }
+
+  &:first-of-type {
+    transform: rotate(0);
+  }
+
+  &--big {
+    flex-basis: 0.25 * $card-height;
+  }
+
+  &--huge {
+    flex-basis: 0.45 * $card-height;
+  }
+}
+
+.title {
+  font: 18px "Trebuchet MS";
+  color: #444;
+  text-align: center;
 }

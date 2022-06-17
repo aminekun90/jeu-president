@@ -1,30 +1,21 @@
-<div class="card-wrapper {{_card?.getCategory()}}">
-  <div class="card-content">
-    <div class="card-top-value">
-      <div class="card-number">{{_card?.getName()}}</div>
-      <div class="card-symbol">{{_card?.getCategory()}}</div>
-    </div>
-    <div *ngIf="_card?.getName()=='A'" class="card-symbole large center">
-      {{_card?.getCategory()}}
-    </div>
-    <div *ngIf="_card?.getName()=='J'" class="card-symbole large center">
-      {{_card?.getCategory()}}
-      <!-- Add Jota card design -->
-    </div>
-    <div *ngIf="_card?.getName()=='Q'" class="card-symbole large center">
-      {{_card?.getCategory()}}
-      <!-- Add Queen card design-->
-    </div>
-    <div *ngIf="convertStringToNumber(_card?.getName()) && convertStringToNumber(_card?.getName()) >1"
-      class="card-symbole center">
-      <ng-container *ngFor="let i of createRange(convertStringToNumber(_card?.getName()))">
-        {{_card?.getCategory()}}
-      </ng-container>
+<section class="card card--{{_card?.getCategory()}}" [attr.value]="_card?.getName()">
 
+  <div [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}">
+
+    <div *ngIf="getColumnUp().value" class="card__column">
+      <div *ngFor="let item of createRange(getColumnUp().value)"
+        [ngClass]="{'card__symbol':true,'card__symbol--rotated':isRotated(item)}"></div>
     </div>
-    <div class="card-bottom-value">
-      <div class="card-number">{{_card?.getName()}}</div>
-      <div class="card-symbol">{{_card?.getCategory()}}</div>
+
+    <div *ngIf="getColumnCenter()" [ngClass]="{'card__column':true, 'card__column--centered':!isInnerCentered()}">
+      <div *ngFor="let item of createRange(getColumnCenter())"
+        [ngClass]="{'card__symbol':true,'card__symbol--big':isBig()}"></div>
     </div>
+
+    <div *ngIf="getColumnDown().value" class="card__column">
+      <div *ngFor="let item of createRange(getColumnDown().value)"
+        [ngClass]="{'card__symbol':true,'card__symbol--rotated':isRotated(item)}"></div>
+    </div>
+
   </div>
-</div>
+</section>

@@ -1,3 +1,4 @@
 <div class="deck">
-  <app-card *ngFor="let card of _deck?.getCards();let index=index;" [card]="card" class="card-{{index}}"></app-card>
+  <app-card *ngFor="let card of _deck?.getCards();let index=index;" [card]="card" [hidden]="hidden"
+    class="card-{{index}}"></app-card>
 </div>

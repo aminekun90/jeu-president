@@ -8,6 +8,7 @@ import { Deck } from '@jeu-president-library/Deck';
 })
 export class DeckComponent implements OnInit {
   public _deck: Deck | undefined;
+  hidden: boolean = true;
   @Input() set deck(deck: Deck | undefined) {
     this._deck = deck;
   }
