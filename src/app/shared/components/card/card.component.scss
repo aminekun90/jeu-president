@@ -42,9 +42,15 @@ $spade: "♠";
   }
   transition: all 250ms linear 100ms;
   top: 0;
-  &:hover {
+  // z-index: 1;
+  &:hover,
+  &.selected {
     border: 1px solid rgba(0, 0, 0, 0.8);
     top: -$card-padding * 10;
+    position: absolute;
+  }
+  &.selected {
+    z-index: 500;
   }
   &:before,
   &:after {

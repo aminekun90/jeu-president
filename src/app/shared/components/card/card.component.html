@@ -1,4 +1,5 @@
-<section *ngIf="!_hidden" class="card card--{{_card?.getCategory()}}" [attr.value]="_card?.getName()">
+<section *ngIf="!_hidden" class="{{cardClass}}" [ngClass]="{'selected':isSelected}" [attr.value]="_card?.getName()"
+  (click)="select()" #cardElement>
 
   <div *ngIf="!isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}">
 
@@ -22,4 +23,5 @@
     <img src="/assets/{{getCardFullName()}}" alt="">
   </div>
 </section>
-<section *ngIf="_hidden" class="card hidden"></section>
+<section *ngIf="_hidden" [ngClass]="{'card hidden':true,'selected':isSelected}" (click)="select()" #cardElement>
+</section>
