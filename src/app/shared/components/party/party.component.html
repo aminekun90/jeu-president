@@ -1,10 +1,19 @@
-<app-deck [deck]="_party?.getDeck()"></app-deck>
-<div class="players" *ngFor="let player of _party?.getPlayers();let index = index">
-  <div>
-    Player: {{player.getName()}}
+<div class="party-container">
+  <app-deck [deck]="_party?.getDeck()"></app-deck>
+  <div class="table">
+
   </div>
-  <div class="card-sets">
-    <app-card *ngFor="let card of _party?.getPlayerSetOfCards(index);let index=index;" [card]="card"
-      class="card-{{index}}"></app-card>
+  <div class="party">
+
+    <div class="player" *ngFor="let player of _party?.getPlayers();let index = index">
+      <div>
+        {{player.getName()}}
+      </div>
+
+      <div class="card-sets">
+        <app-card *ngFor="let card of _party?.getPlayerSetOfCards(index);let index=index;" [card]="card"
+          class="card-{{index}}"></app-card>
+      </div>
+    </div>
   </div>
 </div>
