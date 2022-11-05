@@ -20,7 +20,7 @@
 
   </div>
   <div *ngIf="isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}">
-    <img src="/assets/{{getCardFullName()}}" alt="">
+    <img src="./assets/icons/{{getCardFullName()}}" alt="">
   </div>
 </section>
 <section *ngIf="_hidden" [ngClass]="{'card hidden':true,'selected':isSelected}" (click)="select()" #cardElement>

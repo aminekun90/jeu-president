@@ -1,26 +1,37 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { SharedRoutingModule } from './shared-routing.module';
-import { SharedComponent } from './components/shared/shared.component';
+
+import { TranslateModule } from '@ngx-translate/core';
+
+import { PageNotFoundComponent } from './components/';
+import { WebviewDirective } from './directives/';
+import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { CardComponent } from './components/card/card.component';
 import { DeckComponent } from './components/deck/deck.component';
 import { PartyComponent } from './components/party/party.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
 
 @NgModule({
   declarations: [
-    SharedComponent,
+    PageNotFoundComponent,
+    WebviewDirective,
     NavigationComponent,
     CardComponent,
     DeckComponent,
-    PartyComponent
-  ],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    SharedRoutingModule,
-  ],
-  exports: [CardComponent, DeckComponent, PartyComponent, NavigationComponent]
+    PartyComponent,
+    SplashScreenComponent],
+  imports: [CommonModule, TranslateModule, FormsModule, BrowserModule],
+  exports: [
+    TranslateModule,
+    WebviewDirective,
+    CardComponent,
+    DeckComponent,
+    PartyComponent,
+    NavigationComponent,
+    FormsModule,
+    SplashScreenComponent
+  ]
 })
 export class SharedModule { }

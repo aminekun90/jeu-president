@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Party } from '@jeu-president-library/Party';
+import { Party } from '@daifugo/Party';
 
 @Component({
   selector: 'app-party',

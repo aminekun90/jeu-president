@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Deck } from '@jeu-president-library/Deck';
+import { Deck } from '@daifugo/Deck';
 
 @Component({
   selector: 'app-deck',

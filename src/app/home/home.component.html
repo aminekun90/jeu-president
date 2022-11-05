@@ -1,10 +1,16 @@
-<label for="playersNumber">Players number:</label>
-<select name="playersNumber" id="playersNumber" [(ngModel)]="playersNumber.value">
-  <option disabled>How many player?</option>
-  <option *ngFor="let playerNumber of selectModel" [value]="playerNumber.value">{{playerNumber.title}}</option>
+<div class="container">
+  <h1 class="title">
+    {{ 'PAGES.HOME.TITLE' | translate }}
+  </h1>
 
-</select>
+  <label for="playersNumber">Players number:</label>
+  <select name="playersNumber" id="playersNumber" [(ngModel)]="playersNumber.value">
+    <option disabled>How many player?</option>
+    <option *ngFor="let playerNumber of selectModel" [value]="playerNumber.value">{{playerNumber.title}}</option>
 
-<button class="btn btn-round btn-sm btn-filled-blue" (click)="startNewParty()">New Party</button>
+  </select>
 
-<app-party [party]="party"></app-party>
+  <button class="btn btn-round btn-sm btn-filled-blue" (click)="startNewParty()">New Party</button>
+
+  <app-party [party]="party"></app-party>
+</div>

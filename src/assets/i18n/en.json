@@ -1,0 +1,11 @@
+{
+  "PAGES": {
+    "HOME": {
+      "TITLE": "Daifugo"
+    },
+    "DETAIL": {
+      "TITLE": "Detail page !",
+      "BACK_TO_HOME": "Back to Home"
+    }
+  }
+}

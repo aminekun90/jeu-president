@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Party } from '@jeu-president-library/Party';
+import { Router } from '@angular/router';
+import { Party } from '@daifugo/Party';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,9 @@ export class HomeComponent implements OnInit {
     { title: "5 players", value: 5, },
     { title: "6 players", value: 6, },
   ]
+  constructor(private router: Router) { }
+
+
 
   ngOnInit(): void {
     console.debug('Home - onInit');
@@ -25,4 +29,5 @@ export class HomeComponent implements OnInit {
     this.party.startParty();
     console.log(this.party);
   }
+
 }

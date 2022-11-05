@@ -1,18 +1,28 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router'; // CLI imports router
-import { HomeComponent } from './home/home.component';
-import { MyAccountComponent } from './my-account/my-account.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { Routes, RouterModule } from '@angular/router';
+import { PageNotFoundComponent } from './shared/components';
+
+import { HomeRoutingModule } from './home/home-routing.module';
+import { DetailRoutingModule } from './detail/detail-routing.module';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: 'my-account', component: MyAccountComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-
-  { path: '**', component: PageNotFoundComponent },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  }
 ];
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
+    HomeRoutingModule,
+    DetailRoutingModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

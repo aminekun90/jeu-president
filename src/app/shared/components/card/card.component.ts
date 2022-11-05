@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { Card } from '@jeu-president-library/Card';
-import { symbolsTable } from '@jeu-president-library/Consts';
+import { Card } from '@daifugo/Card';
+import { symbolsTable } from '@daifugo/Consts';
 
 @Component({
   selector: 'app-card',
