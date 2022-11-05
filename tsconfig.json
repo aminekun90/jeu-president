@@ -7,6 +7,8 @@
       "@jeu-president-library/*": ["jeu-president-library/src/library/core/*"],
       "@jeu-president/*": ["jeu-president-library/src/library/core/*"]
     },
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,

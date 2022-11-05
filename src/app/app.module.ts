@@ -8,12 +8,14 @@ import { SharedModule } from './shared/shared.module';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { FormsModule } from '@angular/forms';
+import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MyAccountComponent,
     PageNotFoundComponent,
+    SplashScreenComponent,
   ],
   imports: [
     BrowserModule, FormsModule, AppRoutingModule, SharedModule
