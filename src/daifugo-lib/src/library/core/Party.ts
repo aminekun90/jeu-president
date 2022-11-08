@@ -1,4 +1,4 @@
-import { Card } from "@daifugo/Card";
+import { Card } from "./Card";
 import { Deck } from "./Deck";
 import { Player } from "./Player";
 import { Table } from "./Table";

@@ -17,9 +17,10 @@
     "outDir": "dist",
     "baseUrl": "./",
     "paths": {
-      "@jeu-president/*": ["src/library/core/*"]
+      "@daifugo": ["src/library/core"],
+      "@daifugo/*": ["src/library/core/*"]
     }
   },
-  "include": ["src", "library/*"],
+  "include": ["**/*"],
   "exclude": ["node_modules", "dist"]
 }

@@ -1,1 +1,1 @@
-# Library for jeu-president-app
+# Library for Daifugo

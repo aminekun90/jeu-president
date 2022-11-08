@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { TranslateModule } from '@ngx-translate/core';
 
-import { PageNotFoundComponent } from './components/';
 import { WebviewDirective } from './directives/';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -12,6 +11,7 @@ import { DeckComponent } from './components/deck/deck.component';
 import { PartyComponent } from './components/party/party.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
