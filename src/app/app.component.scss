@@ -1,3 +1,237 @@
-:host {
-  
+$color: #c0c0c0;
+$background: #f0f0f0;
+$gutter: 10px;
+$font-size: 16px;
+
+$card-background: #fff;
+$card-padding: 4px;
+$card-border-radius: 8px;
+
+$card-width: 172px;
+$card-height: 240px;
+$card-color-red: #e44145;
+$card-color-black: #252525;
+$card-symbol-size: 40px;
+$club: "♣";
+$diamond: "♦";
+$heart: "♥";
+$spade: "♠";
+
+.card {
+  position: relative;
+  display: inline-block;
+  width: $card-width;
+  height: $card-height;
+  font: $font-size "Trebuchet MS";
+  cursor: pointer;
+  // margin: $gutter;
+  border-radius: $card-border-radius;
+  background: $card-background;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
+  &.hidden {
+    background-color: #ccc;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url(/assets/icons/background.svg);
+  }
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+  transition: top 250ms linear 100ms;
+  top: 0;
+  z-index: 1;
+  &:hover,
+  &.selected {
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    top: -$card-padding;
+    position: absolute;
+  }
+  &.selected {
+    z-index: 500;
+  }
+  &:before,
+  &:after {
+    content: attr(value);
+    position: absolute;
+    width: 12px;
+    text-align: center;
+    letter-spacing: -2px;
+  }
+
+  &:before {
+    top: $card-padding;
+    left: $card-padding;
+  }
+
+  &:after {
+    bottom: $card-padding;
+    right: $card-padding;
+    transform: rotate(180deg);
+  }
+
+  &--hearts {
+    color: $card-color-red;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $heart;
+    }
+  }
+  &--diamonds {
+    color: $card-color-red;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $diamond;
+    }
+  }
+
+  &--spades {
+    color: $card-color-black;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $spade;
+    }
+  }
+
+  &--clubs {
+    color: $card-color-black;
+
+    &:before,
+    &:after {
+      content: attr(value) " " + $club;
+    }
+  }
+}
+
+.card__inner {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 6 * $card-padding;
+  left: 6 * $card-padding;
+  right: 6 * $card-padding;
+  bottom: 6 * $card-padding;
+
+  &--centered {
+    justify-content: center;
+  }
+}
+
+.card__column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--centered {
+    justify-content: center;
+  }
+}
+
+.card__symbol {
+  display: inline-block;
+  height: $card-symbol-size;
+  text-align: center;
+
+  &:before {
+    font-size: $card-symbol-size;
+    line-height: $card-symbol-size;
+  }
+
+  .card--hearts &:before {
+    content: $heart;
+  }
+
+  .card--spades &:before {
+    content: $spade;
+  }
+  .card--diamonds &:before {
+    content: $diamond;
+  }
+  .card--clubs &:before {
+    content: $club;
+  }
+
+  &--rotated,
+  &:last-of-type {
+    transform: rotate(180deg);
+  }
+
+  &:first-of-type {
+    transform: rotate(0);
+  }
+
+  &--big {
+    flex-basis: 0.25 * $card-height;
+  }
+
+  &--huge {
+    flex-basis: 0.45 * $card-height;
+  }
+}
+
+.title {
+  font: 18px "Trebuchet MS";
+  color: #444;
+  text-align: center;
+}
+
+
+.game-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.table {
+  width: 50%;
+  height: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #ddd;
+  border-radius: 10px;
+}
+
+.deck {
+  width: 30%;
+  height: 40%;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.discard-pile {
+  width: 30%;
+  height: 40%;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.player {
+  width: 20%;
+  height: 40%;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.hand {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
 }
