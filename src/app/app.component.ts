@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Card, symbolsTable } from "./model/Card";
+import { Card, symbolsTable } from "./model/card";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'daifuqo';
   deck: any[] = [];
   numberOfPlayers = 6;
-  hands: any = {};
+  hands: Array<Array<Card>> = [];
   gameState:string = 'stopped';
 
   initializeDeck() {
@@ -22,7 +22,7 @@ export class AppComponent {
 
     this.deck = this.deck.concat(cardsOfSpades).concat(cardsOfHearts).concat(cardsOfClubs).concat(cardsOfDiamonds);
     for (let i = 0; i < this.numberOfPlayers; i++)
-      this.hands[`${i}`] = [];
+      this.hands[i] = [];
   }
 
   shuffle($deck: Array<Array<any>>) {
@@ -63,6 +63,7 @@ export class AppComponent {
       array.forEach((x, i) => this.hands[i] = x.map(indexes => this.deck[indexes]));
     }
   }
+
   onStartClick() {
     console.log("Game started");
     this.gameState ='started';
