@@ -6,39 +6,16 @@
     <div class="deck"></div>
     <div class="discard-pile"></div>
   </div>
-  <div class="player player1">
+
+  <div *ngFor="let hand of hands|keyvalue;let pIndex=index;" class="player player{{pIndex}}">
     <div class="hand">
-      <section class="card card--{{hands['0'][0].getType()}}" [attr.value]="hands['0'][0].getCardPower()" >
-        <div *ngIf="!isKQJA(hands['0'][0])" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered(hands['0'][0])}" >
-
-          <div *ngIf="getColumnUp(hands['0'][0]).value" class="card__column">
-            <div *ngFor="let item of createRange(getColumnUp(hands['0'][0]).value)"
-              [ngClass]="{'card__symbol':true,'card__symbol--rotated':isRotated(item,hands['0'][0])}"></div>
-          </div>
-
-          <div *ngIf="getColumnCenter(hands['0'][0])" [ngClass]="{'card__column':true, 'card__column--centered':!isInnerCentered(hands['0'][0])}">
-            <div *ngFor="let item of createRange(getColumnCenter(hands['0'][0]))"
-              [ngClass]="{'card__symbol':true,'card__symbol--big':isBig(hands['0'][0])}"></div>
-          </div>
-
-          <div *ngIf="getColumnDown(hands['0'][0]).value" class="card__column">
-            <div *ngFor="let item of createRange(getColumnDown(hands['0'][0]).value)"
-              [ngClass]="{'card__symbol':true,'card__symbol--rotated':isRotated(item,hands['0'][0])}"></div>
-          </div>
-        </div>
-        <div *ngIf="isKQJA(hands['0'][0])" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered(hands['0'][0])}">
-          <img src="./assets/icons/{{getCardFullName(hands['0'][0])}}" alt="">
-        </div>
-      </section>
-
+      <div class="deck">
+        <app-card *ngFor="let card of hands[pIndex];let index=index;" [card]="card"
+          class="card-{{index}}"></app-card>
+      </div>
     </div>
   </div>
-  <div class="player player2">
-    <div class="hand"></div>
-  </div>
-  <div class="player player3">
-    <div class="hand"></div>
-  </div>
+
 </div>
 
 <router-outlet></router-outlet>
