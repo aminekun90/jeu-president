@@ -164,21 +164,36 @@ $button-padding: 20px;
   font-family: "Ubuntu", sans-serif;
 }
 body {
-  // overflow: hidden;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
 }
 
-/* CAN (MUST) BE REMOVED ! Sample Global style */
+
 .container {
+  padding: 50px;
+  position: relative;
+  z-index: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  &:before {
+    content: '';
+    position: fixed;
+    z-index: -1;
+    display: block;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-image: url(./assets/background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
 
-  background: url(./assets/background.jpg) no-repeat center fixed;
-  -webkit-background-size: cover; /* pour anciens Chrome et Safari */
-  background-size: cover; /* version standardisée */
-
+  }
   .title {
     color: white;
     margin: 0;

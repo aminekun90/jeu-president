@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { SplashScreenComponent } from './splash-screen/splash-screen.component';
 import { CardComponent } from './card/card.component';
 import { FormsModule } from '@angular/forms';
-
-
+import { FontAwesomeModule,FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
 
 @NgModule({
   declarations: [
@@ -12,12 +13,16 @@ import { FormsModule } from '@angular/forms';
     CardComponent,
   ],
   imports: [
-    CommonModule,FormsModule
+    CommonModule,FormsModule,FontAwesomeModule
   ],
   exports:[
     CardComponent,
     SplashScreenComponent,
-    FormsModule
+    FormsModule,FontAwesomeModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+  constructor(library:FaIconLibrary){
+    library.addIconPacks(fas, far);
+  }
+}
