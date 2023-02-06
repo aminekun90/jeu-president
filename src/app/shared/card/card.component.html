@@ -20,3 +20,5 @@
     <img src="./assets/icons/{{getCardFullName()}}" alt="">
   </div>
 </section>
+<section *ngIf="_hidden" [ngClass]="{'card hidden':true,'selected':isSelected}" (click)="select()" #cardElement>
+</section>

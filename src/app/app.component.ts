@@ -8,9 +8,15 @@ import { Card, symbolsTable } from "./model/card";
 export class AppComponent {
   title = 'daifuqo';
   deck: any[] = [];
-  numberOfPlayers = 6;
   hands: Array<Array<Card>> = [];
   gameState:string = 'stopped';
+  playersNumber: any = { title: "3 players", value: 3 };
+  selectModel = [
+    { title: "3 players", value: 3, },
+    { title: "4 players", value: 4, },
+    { title: "5 players", value: 5, },
+    { title: "6 players", value: 6, },
+  ]
 
   initializeDeck() {
     let neutralCards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
@@ -18,10 +24,11 @@ export class AppComponent {
     let cardsOfHearts = neutralCards.map(powers => new Card(powers, "hearts"));
     let cardsOfDiamonds = neutralCards.map(powers => new Card(powers, "diamonds"));
     let cardsOfClubs = neutralCards.map(powers => new Card(powers, "clubs"));
+    let numberofplayers = parseInt(this.playersNumber.value);
     this.deck = [];
-
+    this.hands = [];
     this.deck = this.deck.concat(cardsOfSpades).concat(cardsOfHearts).concat(cardsOfClubs).concat(cardsOfDiamonds);
-    for (let i = 0; i < this.numberOfPlayers; i++)
+    for (let i = 0; i < numberofplayers; i++)
       this.hands[i] = [];
   }
 
@@ -36,7 +43,6 @@ export class AppComponent {
       [$deck[currentIndex], $deck[randomIndex]] = [
         $deck[randomIndex], $deck[currentIndex]];
     }
-    $deck = $deck;
     return $deck;
   }
 
@@ -45,9 +51,10 @@ export class AppComponent {
   }
 
   giveCards() {
-    let devider = (this.deck.length / this.numberOfPlayers) - (this.deck.length % this.numberOfPlayers);
+    let numberofplayers = parseInt(this.playersNumber.value);
+    let devider = (this.deck.length / numberofplayers) - (this.deck.length % numberofplayers);
     let array: number[][] = []
-    for (let i = 0; i < this.numberOfPlayers; i++) {
+    for (let i = 0; i < numberofplayers; i++) {
       array[i] = [];
       for (let j = 0; j < devider; j++) {
         if (!i && !j) {
@@ -55,7 +62,7 @@ export class AppComponent {
         } else if (i && !j) {
           array[i][j] = array[i - 1][j] + 1;
         } else if (!i && j) {
-          array[i][j] = array[i][j - 1] + this.numberOfPlayers;
+          array[i][j] = array[i][j - 1] + numberofplayers;
         } else if (i && j) {
           array[i][j] = array[i - 1][j] + 1;
         }
@@ -65,12 +72,14 @@ export class AppComponent {
   }
 
   onStartClick() {
-    console.log("Game started");
+    console.log("Game started",this.playersNumber);
     this.gameState ='started';
     this.initializeDeck();
+    console.log("Normal deck",this.deck);
     this.deck = this.shuffle([...this.deck]);
+    console.log("Shuffle deck",this.deck);
     this.giveCards();
-    console.log(this.hands)
+    console.log(this.hands);
   }
 
 

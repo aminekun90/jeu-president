@@ -1,21 +1,36 @@
-<button class="btn btn-round btn-filled-green btn-md" (click)="onStartClick()">Start Game</button>
 
+<div class="container">
+  <div *ngIf="!isGameStarted()">
 
-<div class="game-container" *ngIf="isGameStarted()">
-  <div class="table">
-    <div class="deck"></div>
-    <div class="discard-pile"></div>
+    <label for="playersNumber1">Players number:</label>
+    <select name="playersNumber" id="playersNumber1" [(ngModel)]="playersNumber.value">
+      <option disabled>How many player?</option>
+      <option *ngFor="let playerNumber of selectModel" [value]="playerNumber.value">{{playerNumber.title}}</option>
+    </select>
+    <button  class="btn btn-round btn-filled-green btn-md center-button" (click)="onStartClick()">Start Game</button>
   </div>
 
-  <div *ngFor="let hand of hands|keyvalue;let pIndex=index;" class="player player{{pIndex}}">
-    <div class="hand">
-      <div class="deck">
-        <app-card *ngFor="let card of hands[pIndex];let index=index;" [card]="card"
-          class="card-{{index}}"></app-card>
+  <div class="game-container" *ngIf="isGameStarted()">
+    <label for="playersNumber">Players number:</label>
+    <select name="playersNumber" id="playersNumber" [(ngModel)]="playersNumber.value">
+      <option disabled>How many player?</option>
+      <option *ngFor="let playerNumber of selectModel" [value]="playerNumber.value">{{playerNumber.title}}</option>
+    </select>
+    <button *ngIf="isGameStarted()" class="btn btn-round btn-filled-green btn-md" (click)="onStartClick()">Restart Game</button>
+    <div class="table">
+      <div class="deck"></div>
+      <!-- <div class="discard-pile"></div> -->
+    </div>
+    <div *ngFor="let hand of hands|keyvalue;let pIndex=index;" class="player player{{pIndex}}">
+      <div class="hand">
+        <div class="deck">
+          <app-card *ngFor="let card of hands[pIndex];let index=index;" [card]="card" [hidden]="true"
+            class="card-{{index}}"></app-card>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
 
+<app-splash-screen></app-splash-screen>
 <router-outlet></router-outlet>
