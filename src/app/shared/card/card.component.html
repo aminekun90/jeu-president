@@ -1,23 +1,23 @@
 <section *ngIf="!_hidden" class="card card--{{cardClass}}" [attr.value]="_card.getCardPower()" #cardElement>
-  <div *ngIf="!isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}" >
+  <div *ngIf="!_card.isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':_card.isInnerCentered()}" >
 
-    <div *ngIf="getColumnUp().value" class="card__column">
-      <div *ngFor="let item of createRange(getColumnUp().value)"
-        [ngClass]="{'card__symbol':true,'card__symbol--rotated':isRotated(item)}"></div>
+    <div *ngIf="_card.getColumnUp().value" class="card__column">
+      <div *ngFor="let item of createRange(_card.getColumnUp().value)"
+        [ngClass]="{'card__symbol':true,'card__symbol--rotated':_card.isRotated(item)}"></div>
     </div>
 
-    <div *ngIf="getColumnCenter()" [ngClass]="{'card__column':true, 'card__column--centered':!isInnerCentered()}">
-      <div *ngFor="let item of createRange(getColumnCenter())"
-        [ngClass]="{'card__symbol':true,'card__symbol--big':isBig()}"></div>
+    <div *ngIf="_card.getColumnCenter()" [ngClass]="{'card__column':true, 'card__column--centered':!_card.isInnerCentered()}">
+      <div *ngFor="let item of createRange(_card.getColumnCenter())"
+        [ngClass]="{'card__symbol':true,'card__symbol--big':_card.isBig()}"></div>
     </div>
 
-    <div *ngIf="getColumnDown().value" class="card__column">
-      <div *ngFor="let item of createRange(getColumnDown().value)"
-        [ngClass]="{'card__symbol':true,'card__symbol--rotated':isRotated(item)}"></div>
+    <div *ngIf="_card.getColumnDown().value" class="card__column">
+      <div *ngFor="let item of createRange(_card.getColumnDown().value)"
+        [ngClass]="{'card__symbol':true,'card__symbol--rotated':_card.isRotated(item)}"></div>
     </div>
   </div>
-  <div *ngIf="isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':isInnerCentered()}">
-    <img src="./assets/icons/{{getCardFullName()}}" alt="">
+  <div *ngIf="_card.isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':_card.isInnerCentered()}">
+    <img src="./assets/icons/{{_card.getCardFullName()}}" alt="">
   </div>
 </section>
 <section *ngIf="_hidden" [ngClass]="{'card hidden':true,'selected':isSelected}" (click)="select()" #cardElement>

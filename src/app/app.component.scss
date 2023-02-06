@@ -1,12 +1,41 @@
-
-
-
+$menuButtonSize : 30px;
 .game-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color:white;
+  .menu-btn{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 5px;
+    padding: 5px;
+    border-radius: 50%;
+    background-color: #555;
+    height: $menuButtonSize;
+    width: $menuButtonSize;
+    line-height: $menuButtonSize;
+    font-size: 20px;
+    text-align: center;
+    &:hover{
+      background-color: #666;
+    }
+  }
+  .game-menu{
+    position: absolute;
+    top: $menuButtonSize;
+    left: $menuButtonSize;
+    background-color: #555;
+    padding: 15px;
+    border-radius: 8px;
+    flex-direction: row;
+    justify-content: center;
+    form{
+      margin-bottom: 15px;
+    }
+  }
 }
 
 .table {
@@ -21,13 +50,21 @@
 }
 
 .deck {
-  width: 50%;
-  height: 70%;
+  width: 174px;
+  height: 242px;
   background-color: #fff;
   border: 1px solid #000;
-  border-radius: 5px;
+  border-radius: 8px;
   margin: 10px;
   overflow: hidden;
+  position: relative;
+
+  *{
+    position: absolute;
+    app-card{
+      margin-left: 5px;
+    }
+  }
 }
 
 .discard-pile {
