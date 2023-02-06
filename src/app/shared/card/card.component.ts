@@ -19,6 +19,9 @@ export class CardComponent {
   @Input() set hidden(hidden: boolean) {
     this._hidden = hidden;
   }
+  select() {
+    this.isSelected = true;
+  }
   isBig() {
     let name: any = this._card.getCardPower();
     return [10, 8].includes(name)
