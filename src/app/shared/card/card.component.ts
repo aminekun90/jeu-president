@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { Card, symbolsTable } from 'src/app/model/card';
+import { Card } from '@daifuqo/app/model/Card';
 
 @Component({
   selector: 'app-card',

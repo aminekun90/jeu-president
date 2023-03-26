@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
-import { Card } from "./model/card";
+import { Card } from '@daifuqo/app/model/Card';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
