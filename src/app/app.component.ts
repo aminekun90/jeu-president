@@ -11,6 +11,7 @@ export class AppComponent {
   gameMenuOpened: boolean = false;
   deck: any[] = [];
   hands: Array<Array<Card>> = [];
+  table:Array<Card> = [];
   hoveredHand: any = null;
   gameState: string = 'stopped';
   playersNumber: any = { title: "3 players", value: 3 };
@@ -32,6 +33,7 @@ export class AppComponent {
     let cardsOfDiamonds = neutralCards.map(powers => new Card(powers, "diamonds"));
     let cardsOfClubs = neutralCards.map(powers => new Card(powers, "clubs"));
     let numberofplayers = parseInt(this.playersNumber.value);
+    this.table = [];
     this.deck = [];
     this.hands = [];
     this.deck = this.deck.concat(cardsOfSpades).concat(cardsOfHearts).concat(cardsOfClubs).concat(cardsOfDiamonds);
@@ -45,8 +47,6 @@ export class AppComponent {
       this.clearedTimer=false;
       event.preventDefault();
       this.timer = setTimeout(()=>{
-        console.log(this.hoveredHand.value);
-
         if(event.wheelDelta>100)
         this.moveArrayElementsForward(this.hoveredHand.value)
         if(event.wheelDelta<100)
@@ -81,6 +81,19 @@ export class AppComponent {
   mouseLeaveDeck(hand: any) {
     this.hoveredHand = null;
   }
+
+  onCardClick(card:Card,playerIndex:number){
+    this.playCard(card,playerIndex);
+  }
+
+  playCard(card: Card, playerIndex: number) {
+    let indexOfCard = this.hands[playerIndex].indexOf(card);
+    if (indexOfCard > -1) {
+      this.hands[playerIndex].splice(indexOfCard, 1);
+   }
+   this.table.push(card);
+  }
+
   shuffle($deck: Array<Array<any>>) {
     let currentIndex = $deck.length, randomIndex
     // While there remain elements to shuffle.
