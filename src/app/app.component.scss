@@ -1,4 +1,4 @@
-$menuButtonSize : 30px;
+$menuButtonSize: 30px;
 .game-container {
   width: 100%;
   display: flex;
@@ -6,8 +6,8 @@ $menuButtonSize : 30px;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color:white;
-  .menu-btn{
+  color: white;
+  .menu-btn {
     cursor: pointer;
     position: absolute;
     top: 5px;
@@ -20,11 +20,11 @@ $menuButtonSize : 30px;
     line-height: $menuButtonSize;
     font-size: 20px;
     text-align: center;
-    &:hover{
+    &:hover {
       background-color: #666;
     }
   }
-  .game-menu{
+  .game-menu {
     position: absolute;
     top: $menuButtonSize;
     left: $menuButtonSize;
@@ -33,7 +33,7 @@ $menuButtonSize : 30px;
     border-radius: 8px;
     flex-direction: row;
     justify-content: center;
-    form{
+    form {
       margin-bottom: 15px;
     }
   }
@@ -60,9 +60,9 @@ $menuButtonSize : 30px;
   overflow: hidden;
   position: relative;
 
-  *{
+  * {
     position: absolute;
-    app-card{
+    app-card {
       margin-left: 5px;
     }
   }
@@ -76,10 +76,10 @@ $menuButtonSize : 30px;
   border-radius: 5px;
   margin: 10px;
 }
-.players{
-  width:100%;
+.players {
+  width: 100%;
   overflow-x: scroll;
-  display:flex;
+  display: flex;
 }
 .player {
   width: 26%;
@@ -88,9 +88,9 @@ $menuButtonSize : 30px;
   border: 1px solid #000;
   border-radius: 5px;
   margin: 10px;
-
 }
-.cards-available {
+.cards-available,
+.alerts {
   color: #222;
   font-size: 12px;
   border-radius: 10px;
@@ -99,6 +99,10 @@ $menuButtonSize : 30px;
   border: 1px rgba(0, 128, 0, 0.404) solid;
 
   display: inline-block;
+}
+.alerts {
+display:block;
+margin-bottom: 10px;
 }
 .hand {
   display: flex;
@@ -117,7 +121,7 @@ $menuButtonSize : 30px;
 
 .center-button {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: #fff;
   border: none;
   border-radius: 5px;

@@ -17,6 +17,7 @@ export class AppComponent {
   playersNumber: any = { title: "3 players", value: 3 };
   timer: any;
   clearedTimer: boolean = true;
+  alerts: string = "";
   selectModel = [
     { title: "3 players", value: 3, },
     { title: "4 players", value: 4, },
@@ -97,12 +98,12 @@ export class AppComponent {
     return arr;
   }
 
-   /**
-   * Move to the previous card to select
-   *
-   * @param arr
-   * @returns
-   */
+  /**
+  * Move to the previous card to select
+  *
+  * @param arr
+  * @returns
+  */
   moveArrayElementsBackward(arr: Card[]) {
     if (!arr || arr.length <= 1) return arr;
 
@@ -121,11 +122,11 @@ export class AppComponent {
     this.hoveredHand = hand;
   }
 
-   /**
-   * Triggered When the mouse leavs the deck area
-   *
-   * @param hand
-   */
+  /**
+  * Triggered When the mouse leavs the deck area
+  *
+  * @param hand
+  */
   mouseLeaveDeck(hand: any) {
     this.hoveredHand = null;
   }
@@ -148,9 +149,20 @@ export class AppComponent {
   playCard(card: Card, playerIndex: number) {
     let indexOfCard = this.hands[playerIndex].indexOf(card);
     if (indexOfCard > -1) {
+
+      const canPlay = this.canPlayCard(card);
+
+      if (!canPlay) {
+        this.alerts = "cannot play this card";
+        return;
+      }
       this.hands[playerIndex].splice(indexOfCard, 1);
+      this.table.push(card);
     }
-    this.table.push(card);
+  }
+
+  canPlayCard(card: Card) {
+    return card.isGreaterThan(this.table[this.table.length - 1]);
   }
 
   /**
