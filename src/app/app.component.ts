@@ -161,6 +161,17 @@ export class AppComponent {
     }
   }
 
+  sortHand(hand:Card[]){
+    return hand.sort((cardA,cardB)=>{
+      return cardA.isGreaterThan(cardB)?1:-1;
+    });
+  }
+  /**
+   * Returns if a player can play a card or not
+   *
+   * @param card
+   * @returns
+   */
   canPlayCard(card: Card) {
     return card.isGreaterThan(this.table[this.table.length - 1]);
   }
@@ -210,6 +221,7 @@ export class AppComponent {
         this.hands[j].push(this.deck[cardIndex]);
       }
     }
+    this.hands = this.hands.map((hand)=>this.sortHand(hand));
   }
 
   /**

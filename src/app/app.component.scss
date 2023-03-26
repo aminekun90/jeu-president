@@ -48,6 +48,12 @@ $menuButtonSize: 30px;
   align-items: center;
   background-color: #ddd;
   border-radius: 10px;
+  .deck{
+    overflow: hidden;
+    app-card{
+      position: absolute;
+    }
+  }
 }
 
 .deck {
@@ -57,15 +63,7 @@ $menuButtonSize: 30px;
   border: 1px solid #000;
   border-radius: 8px;
   margin: 10px;
-  overflow: hidden;
   position: relative;
-
-  * {
-    position: absolute;
-    app-card {
-      margin-left: 5px;
-    }
-  }
 }
 
 .discard-pile {
@@ -82,12 +80,14 @@ $menuButtonSize: 30px;
   display: flex;
 }
 .player {
-  width: 26%;
+  width: 27%;
   height: 30%;
   background-color: #fff;
   border: 1px solid #000;
   border-radius: 5px;
   margin: 10px;
+  text-align: center;
+  overflow-y: hidden;
 }
 .cards-available,
 .alerts {
@@ -97,12 +97,11 @@ $menuButtonSize: 30px;
   padding: 3px;
   background-color: rgba(0, 128, 0, 0.404);
   border: 1px rgba(0, 128, 0, 0.404) solid;
-
   display: inline-block;
 }
 .alerts {
-display:block;
-margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 .hand {
   display: flex;

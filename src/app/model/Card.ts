@@ -80,31 +80,46 @@ export class Card {
     if (!cardPower || cardPower === this.cardPower || !card) {
       return true;
     }
-    if (!isRevolution && cardPower === 2 || isRevolution && cardPower === 3) {
-      return false;
-    }
-    if (!isRevolution && this.cardPower === 2 || isRevolution && this.cardPower === 3) {
-      return true;
-    }
-    const isString = typeof this.cardPower === 'string' || typeof cardPower === 'string';
+    const thisCardPower: string = this.cardPower as string;
+    const otherCardPower = cardPower as string;
 
-    if (isString) {
-      const thisCardPower: string = this.cardPower as string;
-      const otherCardPower = cardPower as string;
-      const stringPowers: any = { 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, J: 11, Q: 12, K: 13, A: 14 };
-      const isGreater = !isRevolution
-        ? stringPowers[thisCardPower] > stringPowers[otherCardPower]
-        : stringPowers[thisCardPower] < stringPowers[otherCardPower];
-      return isGreater;
-    }
+    const isGreater = !isRevolution
+      ? ORDER_REVOLUTION_DISABLED[thisCardPower] > ORDER_REVOLUTION_DISABLED[otherCardPower]
+      : ORDER_REVOLUTION_ENABLED[thisCardPower] < ORDER_REVOLUTION_ENABLED[otherCardPower];
+    return isGreater;
 
-    const currentGreaterWithRevolution = this.cardPower < cardPower && isRevolution;
-    const currentGreaterWithoutRevolution = this.cardPower > cardPower && !isRevolution;
-
-    return currentGreaterWithRevolution || currentGreaterWithoutRevolution;
   }
 }
-
+export const ORDER_REVOLUTION_DISABLED: any = {
+  3: 0,
+  4: 1,
+  5: 2,
+  6: 3,
+  7: 4,
+  8: 5,
+  9: 6,
+  10: 7,
+  J: 8,
+  Q: 9,
+  K: 10,
+  A: 11,
+  2: 12
+};
+export const ORDER_REVOLUTION_ENABLED: any = {
+  2: 0,
+  A: 1,
+  K: 2,
+  Q: 3,
+  J: 4,
+  10: 5,
+  9: 6,
+  8: 7,
+  7: 8,
+  6: 9,
+  5: 10,
+  4: 11,
+  3: 12
+};
 export const symbolsTable = [
   {
     "col_up": {
