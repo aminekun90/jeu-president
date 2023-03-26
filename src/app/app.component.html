@@ -30,7 +30,7 @@
     </div>
     <div *ngFor="let hand of hands|keyvalue;let pIndex=index;" class="player player{{pIndex}}">
       <div class="hand">
-        <div class="deck">
+        <div class="deck" (mouseenter)="mouseEnterDeck(hand)" (mouseleave)="mouseLeaveDeck(hand)">
           <app-card *ngFor="let card of hands[pIndex];let index=index;" [card]="card"
             class="card-{{index}}"></app-card>
         </div>

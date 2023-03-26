@@ -59,48 +59,45 @@ export class Card {
       let name = this.getCardPower();
       return [2, 3, 'A', 'J', 'Q', 'K'].includes(name);
     }
+    /**
+     * is current card K,Q,J, or A
+     * @returns
+     */
     isKQJA() {
       let name: any = this.getCardPower();
       return ['A', 'J', 'Q', 'K'].includes(name);
     }
-    isGreaterThan($card: Card, $isRevolution = false): boolean {
-      let givenCardPower: string | number = $card.getCardPower();
-      if (givenCardPower === this.cardPower) {
+
+    /**
+     * Current card is greater than a given card
+     *
+     * @param $card
+     * @param $isRevolution
+     * @returns
+     */
+    isGreaterThan($card: Card, $isRevolution = false) {
+      const cardPower = $card.getCardPower();
+
+      if (cardPower === this.cardPower) {
         return false;
       }
 
-      if (typeof this.cardPower === 'number' && typeof givenCardPower === 'number') {
-        return (this.cardPower > $card.cardPower && !$isRevolution) || (this.cardPower < $card.cardPower && $isRevolution);
+      const isString = typeof this.cardPower === 'string' || typeof cardPower === 'string';
+
+      if (isString) {
+        const thisCardPower : string = this.cardPower as string;
+        const otherCardPower = cardPower as string;
+        const stringPowers:any = { Q: 0, J: 1, K: 2, A: 3 };
+        const isGreater = $isRevolution
+          ? stringPowers[thisCardPower] > stringPowers[otherCardPower]
+          : stringPowers[thisCardPower] < stringPowers[otherCardPower];
+        return isGreater;
       }
 
-      if (givenCardPower === 2 && !$isRevolution || givenCardPower === 3 && $isRevolution) {
-        return false;
-      }
+      const currentGreaterWithRevolution = this.cardPower < cardPower && $isRevolution;
+      const currentGreaterWithoutRevolution = this.cardPower > cardPower && !$isRevolution;
 
-      if (typeof this.cardPower === 'string' && typeof givenCardPower === 'number') {
-        if ((givenCardPower === 2 && !$isRevolution) || (givenCardPower === 3 && $isRevolution)) {
-          return false;
-        }
-        return true; // String cards are powerfull
-      }
-
-      if (typeof this.cardPower === 'number' && typeof givenCardPower === 'string') {
-        if ((this.cardPower === 2 && !$isRevolution) || (this.cardPower === 3 && $isRevolution)) {
-          return true;
-        }
-        return false;// String cards are powerfull
-      }
-      if (typeof this.cardPower === 'string' && typeof givenCardPower === 'string') {
-        //Q,J,K,A
-        let stringPowers: any = {
-          'Q': 0,
-          'J': 1,
-          'K': 2,
-          'A': 3,
-        }
-        return $isRevolution ? stringPowers[this.cardPower] > stringPowers[givenCardPower] : stringPowers[this.cardPower] < stringPowers[givenCardPower];
-      }
-      return false;
+      return currentGreaterWithRevolution || currentGreaterWithoutRevolution;
     }
   }
 
