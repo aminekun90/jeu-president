@@ -34,19 +34,20 @@
       </div>
       <!-- <div class="discard-pile"></div> -->
     </div>
-    <div *ngFor="let hand of hands|keyvalue;let pIndex=index;" class="player player{{pIndex}}">
-      <div class="cards-available">
-        {{hands[pIndex].length}} cards available.
-      </div>
-
-
-      <div class="hand">
-        <div class="deck" (mouseenter)="mouseEnterDeck(hand)" (mouseleave)="mouseLeaveDeck(hand)">
-          <app-card *ngFor="let card of hands[pIndex];let index=index;" [card]="card"
-            class="card-{{index}}" (click)="onCardClick(card,pIndex)"></app-card>
+    <div class="players">
+      <div *ngFor="let hand of hands|keyvalue;let pIndex=index;" class="player player{{pIndex}}">
+        <div class="cards-available">
+          {{hands[pIndex].length}} cards available.
+        </div>
+        <div class="hand">
+          <div class="deck" (mouseenter)="mouseEnterDeck(hand)" (mouseleave)="mouseLeaveDeck(hand)">
+            <app-card *ngFor="let card of hands[pIndex];let index=index;" [card]="card"
+              class="card-{{index}}" (click)="onCardClick(card,pIndex)"></app-card>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 

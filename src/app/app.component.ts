@@ -11,54 +11,85 @@ export class AppComponent {
   gameMenuOpened: boolean = false;
   deck: any[] = [];
   hands: Array<Array<Card>> = [];
-  table:Array<Card> = [];
+  table: Array<Card> = [];
   hoveredHand: any = null;
   gameState: string = 'stopped';
   playersNumber: any = { title: "3 players", value: 3 };
-  timer:any;
-  clearedTimer:boolean=true;
+  timer: any;
+  clearedTimer: boolean = true;
   selectModel = [
     { title: "3 players", value: 3, },
     { title: "4 players", value: 4, },
     { title: "5 players", value: 5, },
     { title: "6 players", value: 6, },
-  ]
+  ];
+  /**
+   * Open game menu
+   */
   openGameMenu() {
     this.gameMenuOpened = true;
   }
+
+  /**
+   * Init game deck and table
+   */
   initializeDeck() {
-    let neutralCards = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
-    let cardsOfSpades = neutralCards.map(powers => new Card(powers, "spades"));
-    let cardsOfHearts = neutralCards.map(powers => new Card(powers, "hearts"));
-    let cardsOfDiamonds = neutralCards.map(powers => new Card(powers, "diamonds"));
-    let cardsOfClubs = neutralCards.map(powers => new Card(powers, "clubs"));
-    let numberofplayers = parseInt(this.playersNumber.value);
     this.table = [];
     this.deck = [];
     this.hands = [];
-    this.deck = this.deck.concat(cardsOfSpades).concat(cardsOfHearts).concat(cardsOfClubs).concat(cardsOfDiamonds);
-    for (let i = 0; i < numberofplayers; i++)
-      this.hands[i] = [];
-  }
+    const suits = ['spades', 'hearts', 'diamonds', 'clubs'];
+    const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 
-  @HostListener('mousewheel', ['$event']) // for window scroll events
-  onScroll(event: any) {
-    if(this.hoveredHand && this.clearedTimer){
-      this.clearedTimer=false;
-      event.preventDefault();
-      this.timer = setTimeout(()=>{
-        if(event.wheelDelta>100)
-        this.moveArrayElementsForward(this.hoveredHand.value)
-        if(event.wheelDelta<100)
-        this.moveArrayElementsBackward(this.hoveredHand.value)
-        clearTimeout(this.timer);
-        this.clearedTimer=true;
-      },300);
+    for (let suit of suits) {
+      for (let rank of ranks) {
+        this.deck.push(new Card(rank, suit));
+      }
+    }
+
+    const numberofplayers = parseInt(this.playersNumber.value);
+    for (let i = 0; i < numberofplayers; i++) {
+      this.hands.push([]);
     }
   }
 
-  moveArrayElementsForward(arr:Card[]) {
-    if (arr.length <= 1) return arr;
+  /**
+   * This function hundles horizontal scroll and vertical scrol on card
+   *
+   * @param event
+   * @returns
+   */
+  @HostListener('mousewheel', ['$event']) // for window scroll events
+  onScroll(event: any) {
+    if (event.wheelDeltaX !== 0) {
+      return;
+    }
+
+    if (this.hoveredHand && this.clearedTimer) {
+      this.clearedTimer = false;
+      event.preventDefault();
+
+      const scrollDirection = event.wheelDeltaY > 0 ? 'forward' : 'backward';
+
+      setTimeout(() => {
+        if (scrollDirection === 'forward') {
+          this.moveArrayElementsForward(this.hoveredHand?.value);
+        } else if (scrollDirection === 'backward') {
+          this.moveArrayElementsBackward(this.hoveredHand?.value);
+        }
+
+        this.clearedTimer = true;
+      }, 300);
+    }
+  }
+
+  /**
+   * Move to the next card to select
+   *
+   * @param arr
+   * @returns
+   */
+  moveArrayElementsForward(arr: Card[]) {
+    if (!arr || arr.length <= 1) return arr;
 
     const lastElement = arr.pop() as Card;
     arr.unshift(lastElement);
@@ -66,8 +97,14 @@ export class AppComponent {
     return arr;
   }
 
-  moveArrayElementsBackward(arr:Card[]) {
-    if (arr.length <= 1) return arr;
+   /**
+   * Move to the previous card to select
+   *
+   * @param arr
+   * @returns
+   */
+  moveArrayElementsBackward(arr: Card[]) {
+    if (!arr || arr.length <= 1) return arr;
 
     const firstElement = arr.shift() as Card;
     arr.push(firstElement);
@@ -75,25 +112,53 @@ export class AppComponent {
     return arr;
   }
 
+  /**
+   * Triggered When the mouse enters the deck area
+   *
+   * @param hand
+   */
   mouseEnterDeck(hand: any) {
     this.hoveredHand = hand;
   }
+
+   /**
+   * Triggered When the mouse leavs the deck area
+   *
+   * @param hand
+   */
   mouseLeaveDeck(hand: any) {
     this.hoveredHand = null;
   }
 
-  onCardClick(card:Card,playerIndex:number){
-    this.playCard(card,playerIndex);
+  /**
+   * Triggered when a card is clicked
+   *
+   * @param card
+   * @param playerIndex
+   */
+  onCardClick(card: Card, playerIndex: number) {
+    this.playCard(card, playerIndex);
   }
 
+  /**
+   * Play a given card this function should check if th card can be played or not
+   * @param card
+   * @param playerIndex
+   */
   playCard(card: Card, playerIndex: number) {
     let indexOfCard = this.hands[playerIndex].indexOf(card);
     if (indexOfCard > -1) {
       this.hands[playerIndex].splice(indexOfCard, 1);
-   }
-   this.table.push(card);
+    }
+    this.table.push(card);
   }
 
+  /**
+   * Shuffle deck
+   *
+   * @param $deck
+   * @returns
+   */
   shuffle($deck: Array<Array<any>>) {
     let currentIndex = $deck.length, randomIndex
     // While there remain elements to shuffle.
@@ -108,10 +173,19 @@ export class AppComponent {
     return $deck;
   }
 
+  /**
+   * Return if the game has started
+   *
+   * @returns
+   */
   isGameStarted() {
     return this.gameState === 'started';
   }
 
+  /**
+   * Give all players cards from the deck there will be remaining cards sometimes
+   *
+   */
   giveCards() {
     const numberOfPlayers = parseInt(this.playersNumber.value);
     const cardsPerPlayer = Math.floor(this.deck.length / numberOfPlayers);
@@ -126,6 +200,10 @@ export class AppComponent {
     }
   }
 
+  /**
+   * On start button click
+   *
+   */
   onStartClick() {
     console.log("Game started", this.playersNumber);
     this.gameState = 'started';
