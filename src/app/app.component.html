@@ -25,9 +25,15 @@
     </div>
 
     <div class="table">
-      <div class="cards-available">
-        {{table.length}} cards on table.
+      <div class="game-messages">
+        <div class="alerts" *ngIf=alerts>
+          {{alerts}}
+        </div>
+        <div class="cards-available">
+          {{table.length}} cards on table.
+        </div>
       </div>
+
       <div class="deck">
         <app-card *ngFor="let card of table;let index=index;" [card]="card"
             class="card-{{index}}" ></app-card>
