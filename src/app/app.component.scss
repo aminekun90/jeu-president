@@ -83,14 +83,24 @@ $menuButtonSize : 30px;
   border: 1px solid #000;
   border-radius: 5px;
   margin: 10px;
-}
 
+}
+.cards-available {
+  color: #222;
+  font-size: 12px;
+  border-radius: 10px;
+  padding: 3px;
+  background-color: rgba(0, 128, 0, 0.404);
+  border: 1px rgba(0, 128, 0, 0.404) solid;
+
+  display: inline-block;
+}
 .hand {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 90%;
+  height: 70%;
 }
 
 .container {
