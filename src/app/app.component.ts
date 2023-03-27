@@ -24,6 +24,10 @@ export class AppComponent {
     { title: "5 players", value: 5, },
     { title: "6 players", value: 6, },
   ];
+  currentHandPlaying: number = 0;
+  playerSkippedTurn:boolean = false;
+  cardSuit:number = 0;
+
   /**
    * Open game menu
    */
@@ -38,6 +42,7 @@ export class AppComponent {
     this.table = [];
     this.deck = [];
     this.hands = [];
+    this.currentHandPlaying = 0;
     const suits = ['spades', 'hearts', 'diamonds', 'clubs'];
     const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 
@@ -50,6 +55,25 @@ export class AppComponent {
     const numberofplayers = parseInt(this.playersNumber.value);
     for (let i = 0; i < numberofplayers; i++) {
       this.hands.push([]);
+    }
+  }
+
+  /**
+   * Function chooses the hand to begin, in standard rules the hand who has
+   * the Queen of hearts start if not found in any hand it's a random choice
+   *
+   * @param cardPower
+   * @param type
+   */
+  chooseFirstToPlay(cardPower: number | string = "Q", type: string = "hearts") {
+    this.currentHandPlaying = this.hands.findIndex(
+      (hand) => hand.find(
+        card => card.getCardPower() === cardPower && card.getType() === type
+      ));
+    if (this.currentHandPlaying > -1) {
+      console.log('Player ', this.currentHandPlaying, ' selected');
+    } else {
+      this.currentHandPlaying = Math.floor(Math.random() * this.hands.length);
     }
   }
 
@@ -147,23 +171,37 @@ export class AppComponent {
    * @param playerIndex
    */
   playCard(card: Card, playerIndex: number) {
+    if (this.playerSkippedTurn || playerIndex !== this.currentHandPlaying) {
+      this.alerts = "You cannot play now";
+      this.playerSkippedTurn = false;
+      return;
+    }
+
     let indexOfCard = this.hands[playerIndex].indexOf(card);
     if (indexOfCard > -1) {
 
       const canPlay = this.canPlayCard(card);
-
+      // either player can or can't
+      this.skipTurn();
       if (!canPlay) {
-        this.alerts = "cannot play this card";
+        this.alerts = "cannot play this card moving to next player";
         return;
       }
+
       this.hands[playerIndex].splice(indexOfCard, 1);
       this.table.push(card);
     }
   }
 
-  sortHand(hand:Card[]){
-    return hand.sort((cardA,cardB)=>{
-      return cardA.isGreaterThan(cardB)?1:-1;
+  skipTurn(){
+    do {
+      this.currentHandPlaying = this.currentHandPlaying >= this.hands.length-1 ? 0 : this.currentHandPlaying + 1;
+    } while (!this.hands[this.currentHandPlaying].length);
+  }
+
+  sortHand(hand: Card[]) {
+    return hand.sort((cardA, cardB) => {
+      return cardA.isGreaterThan(cardB) ? 1 : -1;
     });
   }
   /**
@@ -221,7 +259,7 @@ export class AppComponent {
         this.hands[j].push(this.deck[cardIndex]);
       }
     }
-    this.hands = this.hands.map((hand)=>this.sortHand(hand));
+    this.hands = this.hands.map((hand) => this.sortHand(hand));
   }
 
   /**
@@ -234,6 +272,7 @@ export class AppComponent {
     this.initializeDeck();
     this.deck = this.shuffle([...this.deck]);
     this.giveCards();
+    this.chooseFirstToPlay();
     console.log(this.hands);
     this.gameMenuOpened = false;
   }

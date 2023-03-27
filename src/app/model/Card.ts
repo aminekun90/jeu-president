@@ -90,6 +90,7 @@ export class Card {
 
   }
 }
+
 export const ORDER_REVOLUTION_DISABLED: any = {
   3: 0,
   4: 1,
