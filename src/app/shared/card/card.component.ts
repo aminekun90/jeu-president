@@ -11,6 +11,7 @@ export class CardComponent {
   public _card: Card = new Card(0,"heart");
   public _hidden: boolean = false;
   isSelected: boolean = false;
+  _notSelectable:boolean = false;
   cardClass = 'card card--';
   @Input() set card(card: Card) {
     this._card = card;
@@ -19,6 +20,11 @@ export class CardComponent {
   @Input() set hidden(hidden: boolean) {
     this._hidden = hidden;
   }
+
+  @Input() set notSelectable(notSelectable: boolean) {
+    this._notSelectable = notSelectable;
+  }
+
   select() {
     this.isSelected = true;
   }

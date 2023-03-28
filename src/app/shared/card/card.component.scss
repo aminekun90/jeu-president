@@ -55,6 +55,7 @@ $spade: "♠";
     -ms-transform: rotate(-10deg);
     transform: rotate(-10deg);
   }
+
   &.selected {
     z-index: 500;
   }
@@ -111,6 +112,15 @@ $spade: "♠";
     &:after {
       content: attr(value) " " + $club;
     }
+  }
+  &.not-selectable{
+    cursor:inherit;
+    border:none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
   }
 }
 

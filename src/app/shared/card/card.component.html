@@ -1,4 +1,4 @@
-<section *ngIf="!_hidden" class="card card--{{cardClass}}" [attr.value]="_card.getCardPower()" #cardElement>
+<section *ngIf="!_hidden" class="card card--{{cardClass}}" [ngClass]="{'not-selectable':_notSelectable}" [attr.value]="_card.getCardPower()" #cardElement>
   <div *ngIf="!_card.isKQJA()" [ngClass]="{'card__inner':true , 'card__inner--centered':_card.isInnerCentered()}" >
 
     <div *ngIf="_card.getColumnUp().value" class="card__column">
