@@ -41,12 +41,15 @@
     </div>
     <div class="players">
       <div *ngFor="let hand of hands|keyvalue;let pIndex=index;" class="player player{{pIndex}}">
-        <div class="cards-available">
-          {{hands[pIndex].length}} cards available. <span *ngIf ="currentHandPlaying===pIndex">Player {{currentHandPlaying+1}} turn</span>
+        <div class="actions">
+          <div class="cards-available">
+            {{hands[pIndex].length}} cards available. <span *ngIf ="currentHandPlaying===pIndex">Player {{currentHandPlaying+1}} turn</span>
+          </div>
+          <div class="action-buttons" *ngIf ="currentHandPlaying===pIndex">
+            <button (click)="skipTurn()" class="btn btn-round btn-filled-green btn-sm center-button">Skip turn</button>
+          </div>
         </div>
-        <div class="action-buttons" *ngIf ="currentHandPlaying===pIndex">
-          <button (click)="skipTurn()" class="btn btn-round btn-filled-green btn-sm center-button">Skip turn</button>
-        </div>
+
         <div class="hand">
           <div class="deck" (mouseenter)="mouseEnterDeck(hand)" (mouseleave)="mouseLeaveDeck(hand)">
             <app-card *ngFor="let card of hands[pIndex];let index=index;" [card]="card"

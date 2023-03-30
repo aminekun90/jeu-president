@@ -41,7 +41,7 @@ $menuButtonSize: 30px;
 
 .table {
   width: 100%;
-  height: 60%;
+  height: 50%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -64,24 +64,25 @@ $menuButtonSize: 30px;
   border-radius: 8px;
   margin: 10px;
   position: relative;
+  app-card{
+    position: absolute;
+    left: 0;
+  }
 }
 
-.discard-pile {
-  width: 30%;
-  height: 40%;
-  background-color: #fff;
-  border: 1px solid #000;
-  border-radius: 5px;
-  margin: 10px;
-}
+
 .players {
   width: 100%;
+  height: 50%;;
   overflow-x: scroll;
   display: flex;
+  .actions{
+    height: 70px;
+  }
 }
 .player {
-  width: 27%;
-  height: 30%;
+  width: 200px !important;
+  height: 100%;
   background-color: #fff;
   border: 1px solid #000;
   border-radius: 5px;
