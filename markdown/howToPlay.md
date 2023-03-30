@@ -1,14 +1,14 @@
 # Jeu du president online
 
 Ce jeu est un jeu en ligne basé sur le jeu du président avec un set de carte de 52 (pas de joker).
-
+![splash](./assets/splash-screen-v0.0.3-a.jpeg)
 ## Règles du jeu
 
 ## Pour jouer au président, il vous faut :
 
 - Un jeu de 52 cartes.
-- être au minimum 4 joueurs.
-
+- être au minimum 3 joueurs.
+![splash](./assets/daifuqoScreen.jpeg)
 ## Commencer une partie de président :
 
 Il existe de multiples variantes de ce jeu que cela soit au niveau des règles mêmes ou des nommages des joueurs. Voici celle que pratique l’équipe de règles du jeu.
