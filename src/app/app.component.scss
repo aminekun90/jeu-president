@@ -83,16 +83,13 @@ $menuButtonSize: 30px;
 .player {
   width: 200px !important;
   height: 100%;
-  background-color: #fff;
-  border: 1px solid #000;
   border-radius: 5px;
   margin: 10px;
   text-align: center;
-  overflow-y: hidden;
 }
 .cards-available,
 .alerts {
-  color: #222;
+  color: white;
   font-size: 12px;
   border-radius: 10px;
   padding: 3px;
